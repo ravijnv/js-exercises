@@ -7,7 +7,45 @@
 //   anagrams('rail safety', 'fairy tales') --> True
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
+function removeExtraCharaters(stringA){
+	len=stringA.length;
+	let tempStr="";
+	for(let i=0;i<len;i++){
+		let ch=stringA.charAt(i);
+      if(ch >= 'a' && ch <= 'z'){
+       tempStr+=String(ch);
+      }
+	}
+	return tempStr;
+}
 
-function anagrams(stringA, stringB) {}
 
+function sortString(stringA){
+	return stringA.split('').sort().join('');
+}
+
+
+function anagrams(stringA, stringB) {
+	let lenA = stringA.length;
+	let lenB = stringB.length;
+	if(lenA != lenB){
+		return false;
+	}
+	stringA=stringA.toLowerCase();
+	stringB=stringB.toLowerCase();
+	
+	
+stringA=removeExtraCharaters(stringA);
+stringB=removeExtraCharaters(stringB);
+
+stringA=sortString(stringA);
+stringB=sortString(stringB);
+
+for(let i=0;i<lenA;i++){
+	if(stringA.charAt(i) != stringB.charAt(i)){
+		return false;
+	}
+}
+return true;
+}
 module.exports = anagrams;
